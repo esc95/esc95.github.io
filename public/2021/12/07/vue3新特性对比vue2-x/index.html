@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        esc95 Blog
+    </title>
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            vue3新特性对比vue2.x
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <h1 id="一、根标签"><a href="#一、根标签" class="headerlink" title="一、根标签"></a>一、根标签</h1><blockquote>
+<p>Vue2 的<code>Templata</code>只支持一个根标签<br>Vue3 的<code>Templata</code>支持多个根标签</p>
+</blockquote>
+<pre><code>//vue2
+&lt;template&gt;
+  &lt;div&gt;&lt;/div&gt;
+&lt;/template&gt;
+
+// vue3
+&lt;template&gt;
+  &lt;div&gt;&lt;/div&gt;
+  &lt;img/&gt;
+&lt;/template&gt;
+</code></pre>
+<h1 id="二、初始化方法"><a href="#二、初始化方法" class="headerlink" title="二、初始化方法"></a>二、初始化方法</h1><blockquote>
+<p>Vue2 使用 <code>new Vue()</code>, 参数是<code>new Vue(&#123;template, render&#125;)</code><br>Vue3 使用 <code>createApp()</code> 参数是 <code>createApp(组件)</code></p>
+</blockquote>
+<pre><code>//vue2
+import Vue from &#39;vue&#39;;
+import router from &#39;./routers/&#39;;
+import store from &#39;./stores&#39;;
+import App from &#39;./App.vue&#39;;
+const app =  new Vue(&#123;
+  router,
+  store,
+  render: h =&gt; h(App)
+&#125;).$mount(&#39;#app&#39;);
+
+// vue3
+import &#123; createApp &#125; from &#39;vue&#39;;
+import App from &#39;./App.vue&#39;;
+import &#123; router &#125; from &#39;./router&#39;;
+const app = createApp(App).use(router).mount(&#39;#app&#39;);
+</code></pre>
+<h1 id="三、vue3-内置组件-teleport"><a href="#三、vue3-内置组件-teleport" class="headerlink" title="三、vue3 内置组件 teleport"></a>三、vue3 内置组件 teleport</h1><blockquote>
+<p>将 teleport 包裹的元素移动到某个 DOM 节点下<br>有两个参数 to - string；disabled - boolean</p>
+</blockquote>
+<p>to 使用方法：</p>
+<pre><code>&lt;!-- 正确 --&gt;
+&lt;teleport to=&quot;body&quot; /&gt;
+&lt;teleport to=&quot;#some-id&quot; /&gt;
+&lt;teleport to=&quot;.some-class&quot; /&gt;
+&lt;teleport to=&quot;[data-teleport]&quot; /&gt;
+
+&lt;!-- 错误 --&gt;
+&lt;teleport to=&quot;h1&quot; /&gt;
+&lt;teleport to=&quot;some-string&quot; /&gt;
+</code></pre>
+<p>disabled 使用方法：</p>
+<blockquote>
+<p>此可选属性可用于禁用 <teleport> 的功能，这意味着其插槽内容将不会移动到任何位置，而是在您在周围父组件中指定了 <teleport> 的位置渲染。</p>
+</blockquote>
+<pre><code>&lt;teleport to=&quot;#popup&quot; :disabled=&quot;displayVideoInline&quot;&gt;
+  &lt;video src=&quot;./my-movie.mp4&quot; /&gt;
+&lt;/teleport&gt;
+</code></pre>
+<h1 id="四、Lifecycle-Hooks"><a href="#四、Lifecycle-Hooks" class="headerlink" title="四、Lifecycle Hooks"></a>四、Lifecycle Hooks</h1><blockquote>
+<p>新版的生命周期函数，可以按需导入到组件中，且只能在 setup() 函数中使用.</p>
+</blockquote>
+<ul>
+<li>beforeCreate -&gt; use setup()</li>
+<li>created -&gt; use setup()</li>
+<li>beforeMount -&gt; onBeforeMount</li>
+<li>mounted -&gt; onMounted</li>
+<li>beforeUpdate -&gt; onBeforeUpdate</li>
+<li>updated -&gt; onUpdated</li>
+<li>beforeDestroy -&gt; onBeforeUnmount</li>
+<li>destroyed -&gt; onUnmounted</li>
+<li>errorCaptured -&gt; onErrorCaptured</li>
+</ul>
+
+    </div>
+
+    
+</div>
+    <div class="footer" id="footer">
+
+</div>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="">
+<input type="hidden" id="valine_appKey" value="">
+
+<script src="/libs/jquery.min.js"></script>
+
+    
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+        <script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+        
+<script src="/js/js.js"></script>
+
+            <style type="text/css">
+                .v * {
+                    color: #698fca;
+                }
+
+                .v .vlist .vcard .vhead .vsys {
+                    color: #3a3e4a;
+                }
+
+                .v .vlist .vcard .vh .vmeta .vat {
+                    color: #638fd5;
+                }
+
+                .v .vlist .vcard .vhead .vnick {
+                    color: #6ba1ff;
+                }
+
+                .v a {
+                    color: #8696b1;
+                }
+
+                .v .vlist .vcard .vhead .vnick:hover {
+                    color: #669bfc;
+                }
+            </style>
+</body>
+
+</html>
